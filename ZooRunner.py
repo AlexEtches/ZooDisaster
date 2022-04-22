@@ -4,15 +4,32 @@ from ZooAnimal import *
 def foodChain(Animals):
 
     for i in range(len(Animals)):
-        if Animals[i].eat(Animals[i+1]) == True:
-            print(Animals[i].value + "eats " + Animals[i+1].value)
-            Animals.remove(Animals[i+1])
-            print(toString(Animals))
+        if i == 0:
+            if Animals[i].eat(Animals[i+1]) == True:
+                print(Animals[i].value + "eats " + Animals[i+1].value)
+                Animals.remove(Animals[i+1])
+                print(toString(Animals))
+        elif i == len(Animals):
+            if Animals[i].eat(Animals[i-1]) == True:
+                print(Animals[i].value + "eats " + Animals[i-1].value)
+                Animals.remove(Animals[i-1])
+                print(toString(Animals))
+        else:
+            if Animals[i].eat(Animals[i+1]) == True:
+                print(Animals[i].value + "eats " + Animals[i+1].value)
+                Animals.remove(Animals[i+1])
+                print(toString(Animals))
+            elif Animals[i].eat(Animals[i-1]) == True:
+                print(Animals[i].value + "eats " + Animals[i-1].value)
+                Animals.remove(Animals[i-1])
+                print(toString(Animals))
+
 
 def toString(animalList):
     string = []
     for animal in animalList:
         string.append(animal.value)
+    return string
 
 inputString = "Fox,Bug,Chicken,Grass,Sheep"
 inputList=inputString.split(",")
