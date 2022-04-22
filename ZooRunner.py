@@ -9,7 +9,7 @@ def foodChain(Animals):
                 print(Animals[i].value + "eats " + Animals[i+1].value)
                 Animals.remove(Animals[i+1])
                 print(toString(Animals))
-        elif i == len(Animals):
+        elif i == (len(Animals)-1):
             if Animals[i].eat(Animals[i-1]) == True:
                 print(Animals[i].value + "eats " + Animals[i-1].value)
                 Animals.remove(Animals[i-1])
