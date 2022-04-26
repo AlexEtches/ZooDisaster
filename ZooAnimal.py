@@ -4,7 +4,8 @@ class Animal(ABC):
 
     #Attributes
     isAlive = True
-    canEat = []
+    diet = []
+    canEat = False
 
     #Constructors
     def __init__(self):
@@ -24,11 +25,10 @@ class Animal(ABC):
         pass
 
     def eat(self, other):
-        for i in range(len(self.canEat)):
-            if other == self.canEat[i]:
-                return True
-            else:
-                return False
+        if other in self.diet:
+            self.canEat = True
+        else:
+            self.canEat = False
 
     def sleep(self):
         return("I am sleeping")
@@ -43,18 +43,18 @@ class Animal(ABC):
 class Plant(ABC):
     #Attributes
     isAlive = True
-    canEat = []
+    diet = []
+    canEat = False
     #Constructors
     def __init__(self):
         self.value = "Plant"
 
     #Methods
     def eat(self, other):
-        for i in range(len(self.canEat)):
-            if other == self.canEat[i]:
-                return True
-            else:
-                return False
+        if other in self.diet:
+            self.canEat = True
+        else:
+            self.canEat = False
 
     def type(self):
         return(self.value)
@@ -147,7 +147,7 @@ class Leaves(Plant):
 
 class Antelope(Mammal):
     #Attributes
-    canEat = ["Grass"]
+    diet = ["Grass"]
 
     #Constructors
     def __init__(self):
@@ -160,7 +160,7 @@ class Antelope(Mammal):
 
 class BigFish(Fish):
     #Attributes
-    canEat = ["LittleFish"]
+    diet = ["LittleFish"]
 
     #Constructors
     def __init__(self):
@@ -186,7 +186,7 @@ class LittleFish(Fish):
 
 class Bug(Animal):
     #Attributes
-    canEat = ["Leaves"]
+    diet = ["Leaves"]
 
     #Constructors
     def __init__(self):
@@ -207,7 +207,7 @@ class Bug(Animal):
 
 class Bear(Mammal):
     #Attributes
-    canEat = ["BigFish","Bug","Chicken","Cow","Leaves","Sheep"]
+    diet = ["BigFish","Bug","Chicken","Cow","Leaves","Sheep"]
 
     #Constructors
     def __init__(self):
@@ -219,7 +219,7 @@ class Bear(Mammal):
 
 class Chicken(Bird):
     #Attributes
-    canEat = ["Bug"]
+    diet = ["Bug"]
 
     #Constructors
     def __init__(self):
@@ -235,7 +235,7 @@ class Chicken(Bird):
 
 class Cow(Mammal):
     #Attributes
-    canEat = ["Grass"]
+    diet = ["Grass"]
 
     #Constructors
     def __init__(self):
@@ -248,7 +248,7 @@ class Cow(Mammal):
 
 class Fox(Mammal):
     #Attributes
-    canEat = ["Chicken","Sheep"]
+    diet = ["Chicken","Sheep"]
 
     #Constructors
     def __init__(self):
@@ -261,7 +261,7 @@ class Fox(Mammal):
 
 class Giraffe(Mammal):
     #Attributes
-    canEat = ["Leaves"]
+    diet = ["Leaves"]
 
     #Constructors
     def __init__(self):
@@ -274,7 +274,7 @@ class Giraffe(Mammal):
 
 class Lion(Mammal):
     #Attributes
-    canEat = ["Antelope","Cow"]
+    diet = ["Antelope","Cow"]
 
     #Constructors
     def __init__(self):
@@ -287,7 +287,7 @@ class Lion(Mammal):
 
 class Panda(Mammal):
     #Attributes
-    canEat = ["Leaves"]
+    diet = ["Leaves"]
 
     #Constructors
     def __init__(self):
@@ -300,7 +300,7 @@ class Panda(Mammal):
 
 class Sheep(Mammal):
     #Attributes
-    canEat = ["Grass"]
+    diet = ["Grass"]
 
     #Constructors
     def __init__(self):

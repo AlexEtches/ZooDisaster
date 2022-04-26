@@ -1,28 +1,38 @@
 from ZooAnimal import *
 
+inputString = "Fox,Bug,Chicken,Grass,Sheep"
+inputList=inputString.split(",")
+animalList = []
 
 def foodChain(Animals):
 
     for i in range(len(Animals)):
         if i == 0:
-            if Animals[i].eat(Animals[i+1]) == True:
-                print(Animals[i].value + "eats " + Animals[i+1].value)
+            Animals[i].eat(Animals[i+1].value)
+            if Animals[i].canEat == True:
+                print(Animals[i].value + " eats " + Animals[i+1].value)
                 Animals.remove(Animals[i+1])
                 print(toString(Animals))
         elif i == (len(Animals)-1):
-            if Animals[i].eat(Animals[i-1]) == True:
-                print(Animals[i].value + "eats " + Animals[i-1].value)
+            Animals[i].eat(Animals[i-1].value)
+            if Animals[i].canEat == True:
+                print(Animals[i].value + " eats " + Animals[i-1].value)
+                Animals.remove(Animals[i-1])
+                print(toString(Animals))
+        elif i > 0 and i < (len(Animals)-1):
+            Animals[i].eat(Animals[i+1].value)
+            if Animals[i].canEat== True:
+                print(Animals[i].value + " eats " + Animals[i+1].value)
+                Animals.remove(Animals[i+1])
+                print(toString(Animals))
+
+            Animals[i].eat(Animals[i-1].value)
+            if Animals[i].canEat== True:
+                print(Animals[i].value + " eats " + Animals[i-1].value)
                 Animals.remove(Animals[i-1])
                 print(toString(Animals))
         else:
-            if Animals[i].eat(Animals[i+1]) == True:
-                print(Animals[i].value + "eats " + Animals[i+1].value)
-                Animals.remove(Animals[i+1])
-                print(toString(Animals))
-            elif Animals[i].eat(Animals[i-1]) == True:
-                print(Animals[i].value + "eats " + Animals[i-1].value)
-                Animals.remove(Animals[i-1])
-                print(toString(Animals))
+            exit
 
 
 def toString(animalList):
@@ -30,10 +40,6 @@ def toString(animalList):
     for animal in animalList:
         string.append(animal.value)
     return string
-
-inputString = "Fox,Bug,Chicken,Grass,Sheep"
-inputList=inputString.split(",")
-animalList = []
 
 for animal in inputList:
     if animal == "Fox":
@@ -69,4 +75,6 @@ for animal in inputList:
 
     animalList.append(obj)
 
-foodChain(animalList)
+print(inputList)
+while len(animalList) > 1:
+    foodChain(animalList)
