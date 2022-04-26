@@ -1,13 +1,23 @@
 from ZooAnimal import *
 
 inputString = "Fox,Bug,Chicken,Grass,Sheep"
+#extra test cases, all working
+#inputString = "BigFish,LittleFish,Fox,Chicken,Cow,Grass"
+#inputString = "Bear,Sheep,Chicken,Bug,Leaves,Giraffe,Grass,Antelope"
+#inputString = "Cow,Grass,Antelope,Lion,Leaves,Panda"
 inputList=inputString.split(",")
 animalList = []
 outputList = []
+remaining = ""
 
 def foodChain(Animals):
 
+    length = len(Animals)
+
     for i in range(len(Animals)):
+        if len(Animals) == 1:
+            break
+
         if i == 0:
             Animals[i].eat(Animals[i+1].value)
             if Animals[i].canEat == True:
@@ -36,6 +46,9 @@ def foodChain(Animals):
                 break
         else:
             exit
+    #if no animals were removed from the list, return false
+    if len(Animals) == length:
+        return False
         
 
 def toString(animalList):
@@ -47,8 +60,7 @@ def toString(animalList):
             string.append(animal.value)
         return string
 
-for item in inputList:
-        outputList.append(item)
+outputList.append(inputString)
 
 for animal in inputList:
     if animal == "Fox":
@@ -84,8 +96,21 @@ for animal in inputList:
 
     animalList.append(obj)
 
-while len(animalList) > 1:
+while foodChain(animalList) != False:
     foodChain(animalList)
     
-outputList.append(toString(animalList))
+animalOutput = toString(animalList)
+
+if type(animalOutput) == str:
+    outputList.append(animalOutput)
+else:
+    for item in animalOutput:
+        remaining += str(item + ",")
+        #removes trailing comma if there is one
+        if remaining[-1]==',':
+            result = remaining[:-1] 
+        else:
+            remaining
+    outputList.append(result)
+    
 print(outputList)
