@@ -3,8 +3,9 @@ from ZooAnimal import *
 inputString = "Fox,Bug,Chicken,Grass,Sheep"
 #extra test cases, all working
 #inputString = "BigFish,LittleFish,Fox,Chicken,Cow,Grass"
-#inputString = "Bear,Sheep,Chicken,Bug,Leaves,Giraffe,Grass,Antelope"
 #inputString = "Cow,Grass,Antelope,Lion,Leaves,Panda"
+#inputString = "Sheep,Bear,Chicken,Bug,Leaves,Giraffe,Grass,Antelope"
+
 inputList=inputString.split(",")
 animalList = []
 outputList = []
@@ -33,16 +34,17 @@ def foodChain(Animals):
                 break
 
         elif i > 0 and i < (len(Animals)-1):
-            Animals[i].eat(Animals[i+1].value)
-            if Animals[i].canEat== True:
-                outputList.append(Animals[i].value + " eats " + Animals[i+1].value)
-                Animals.remove(Animals[i+1])
-                break
-
+            
             Animals[i].eat(Animals[i-1].value)
             if Animals[i].canEat== True:
                 outputList.append(Animals[i].value + " eats " + Animals[i-1].value)
                 Animals.remove(Animals[i-1])
+                break
+
+            Animals[i].eat(Animals[i+1].value)
+            if Animals[i].canEat== True:
+                outputList.append(Animals[i].value + " eats " + Animals[i+1].value)
+                Animals.remove(Animals[i+1])
                 break
         else:
             exit
